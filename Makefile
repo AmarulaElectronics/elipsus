@@ -1,7 +1,10 @@
 CXX = $(shell wx-config --cxx)
  
 PROGRAM = elipsus
-SOURCES := main.cpp dialogs/appframe.cpp 
+
+SOURCES := main.cpp  \
+	   dialogs/appframe.cpp
+
 OBJECTS := $(patsubst %.cpp,%.o,$(SOURCES))
 
 # implementation
