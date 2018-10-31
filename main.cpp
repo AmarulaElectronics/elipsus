@@ -15,7 +15,7 @@ public:
 		wxImage::AddHandler(new wxPNGHandler);
 
 		wxBitmap bitmap;
-		bitmap.LoadFile(wxT("splash.png"), wxBITMAP_TYPE_PNG);
+		bitmap.LoadFile(wxT("images/splash.png"), wxBITMAP_TYPE_PNG);
 
 		new wxSplashScreen(bitmap,
                 wxSPLASH_CENTRE_ON_SCREEN|wxSPLASH_TIMEOUT,

@@ -11,6 +11,15 @@ SimpleMenu::SimpleMenu(const wxString& title)
   menubar->Append(file, wxT("&File"));
   SetMenuBar(menubar);
 
+  wxBitmap exit(wxT("images/exit.png"), wxBITMAP_TYPE_PNG);
+
+  wxToolBar *toolbar = CreateToolBar();
+  toolbar->AddTool(wxID_EXIT, wxT("Exit application"), exit);
+  toolbar->Realize();
+
+  Connect(wxID_EXIT, wxEVT_COMMAND_TOOL_CLICKED,
+      wxCommandEventHandler(SimpleMenu::OnQuit));
+
   Connect(wxID_EXIT, wxEVT_COMMAND_MENU_SELECTED,
       wxCommandEventHandler(SimpleMenu::OnQuit));
   Centre();
