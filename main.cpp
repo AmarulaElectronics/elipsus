@@ -3,22 +3,14 @@
 #include "wx/image.h"
 #include "wx/splash.h"
 
-class Simple : public wxFrame
-{
-public:
-    Simple(const wxString& title)
-		: wxFrame(NULL, wxID_ANY, title, wxDefaultPosition, wxSize(800, 600))
-	{
-		Centre();
-	}
-};
+#include "dialogs/appframe.h"
 
 class MyApp : public wxApp
 {
 public:
 	bool OnInit()
 	{
-		Simple *simple = new Simple(wxT("Elipsus 1.0.0"));
+		SimpleMenu *appframe = new SimpleMenu(wxT("Elipsus v1.0.0"));
 
 		wxImage::AddHandler(new wxPNGHandler);
 
@@ -27,13 +19,17 @@ public:
 
 		new wxSplashScreen(bitmap,
                 wxSPLASH_CENTRE_ON_SCREEN|wxSPLASH_TIMEOUT,
-                6000, simple, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+                6000, appframe, wxID_ANY, wxDefaultPosition, wxDefaultSize,
                 wxSIMPLE_BORDER|wxSTAY_ON_TOP);
 
 		wxYield();
 
-		simple->Show(true);
-		wxLogDebug(wxT("App Init Success!"));
+		wxLogDebug(wxT("Splash Screen Shown"));
+
+		appframe->Show(true);
+
+		wxLogDebug(wxT("Main App Frame Shown"));
+
 		return true;
 	}
 };
