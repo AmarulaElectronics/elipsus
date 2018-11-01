@@ -1,5 +1,5 @@
 #include "appframe.h"
-
+#include "calculator.h"
 
 AppFrame::AppFrame(const wxString& title)
        : wxFrame(NULL, wxID_ANY, title, wxDefaultPosition, wxSize(800, 480))
@@ -11,10 +11,15 @@ AppFrame::AppFrame(const wxString& title)
 	SetMenuBar(menubar);
 
 	wxBitmap exit(wxT("images/exit.png"), wxBITMAP_TYPE_PNG);
+	wxBitmap calc(wxT("images/calc.png"), wxBITMAP_TYPE_PNG);
 
 	wxToolBar *toolbar = CreateToolBar();
+	toolbar->AddTool(wxID_ANY, wxT("Calculator"), calc);
 	toolbar->AddTool(wxID_EXIT, wxT("Exit application"), exit);
 	toolbar->Realize();
+
+	Connect(wxID_ANY, wxEVT_COMMAND_TOOL_CLICKED,
+                wxCommandEventHandler(AppFrame::RunCalc));
 
 	Connect(wxID_EXIT, wxEVT_COMMAND_TOOL_CLICKED,
 		wxCommandEventHandler(AppFrame::OnQuit));
@@ -33,3 +38,9 @@ void AppFrame::OnQuit(wxCommandEvent& WXUNUSED(event))
 	Close(true);
 }
 
+void AppFrame::RunCalc(wxCommandEvent& WXUNUSED(event))
+{
+	Calculator *calc = new Calculator(wxT(" PCB Calculator v1.0.0"));
+	calc->Show(true);
+	wxLogDebug(wxT("Calculator Started."));
+}

@@ -3,7 +3,8 @@ CXX = $(shell wx-config --cxx)
 PROGRAM = elipsus
 
 SOURCES := main.cpp  \
-	   dialogs/appframe.cpp
+	   dialogs/appframe.cpp \
+	   dialogs/calculator.cpp
 
 OBJECTS := $(patsubst %.cpp,%.o,$(SOURCES))
 
