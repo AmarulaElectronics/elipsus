@@ -10,7 +10,7 @@ class MyApp : public wxApp
 public:
 	bool OnInit()
 	{
-		SimpleMenu *appframe = new SimpleMenu(wxT("Elipsus v1.0.0"));
+		AppFrame *appframe = new AppFrame(wxT("Elipsus v1.0.0"));
 
 		wxImage::AddHandler(new wxPNGHandler);
 
